@@ -1,12 +1,12 @@
-## Alur Cara Berpikir Komputasional
+### Flowchart Menentukan Kelulusan Nilai Informatika
 
 ```mermaid
 flowchart TD
-    A([Mulai: Masalah Kompleks]) --> B[1. Dekomposisi<br/>Memecah masalah menjadi bagian kecil]
-    B --> C[2. Pengenalan Pola<br/>Mencari kesamaan & keteraturan]
-    C --> D[3. Abstraksi<br/>Menyaring informasi penting]
-    D --> E[4. Algoritma<br/>Menyusun langkah solusi terurut]
-    E --> F{Evaluasi:<br/>Solusi Berhasil?}
-    F -- Ya --> G([Selesai: Solusi Optimal])
-    F -- Tidak --> E
+    A(["Mulai"]) --> B[/"Input: Nilai Ujian"/]
+    B --> C{"Apakah Nilai >= 75?"}
+    C -- "Ya" --> D[/"Output: Selamat, Anda Lulus"/]
+    C -- "Tidak" --> E[/"Output: Silakan Ikut Remedial"/]
+    D --> F(["Selesai"])
+    E --> F
 ```
+
