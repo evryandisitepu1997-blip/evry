@@ -3,557 +3,403 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuis Informatika Kelas X</title>
-
+<title>Kuis Interaktif Informatika SMP</title>
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --primary: #38bdf8;
+    --primary-hover: #0284c7;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --border: #334155;
+  }
 
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#101044,#174b82);
-  min-height: 100vh;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-.container {
-  background: white;
-  color: #222;
-  width: 100%;
-  max-width: 650px;
-  padding: 30px;
-  border-radius: 22px;
-  box-shadow: 0 15px 40px #0005;
-}
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
 
-.header {
-  text-align: center;
-  margin-bottom: 25px;
-}
+  .app {
+    background: var(--card);
+    width: 100%;
+    max-width: 680px;
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  }
 
-.header h1 {
-  color: #174bba;
-  font-size: 28px;
-  margin-bottom: 10px;
-}
+  .header {
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+  }
 
-.header p {
-  color: #666;
-}
+  .header h1 {
+    color: var(--primary);
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
 
-input {
-  width: 100%;
-  padding: 14px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  margin: 20px 0;
-  font-size: 16px;
-}
+  .header p {
+    color: var(--muted);
+    font-size: 14px;
+  }
 
-button {
-  border: none;
-  cursor: pointer;
-  padding: 14px 20px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  transition: 0.3s;
-}
+  .form-group {
+    margin-bottom: 16px;
+  }
 
-button:hover {
-  transform: scale(1.03);
-}
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--muted);
+  }
 
-.start-btn, .next-btn {
-  background: #2456dc;
-  color: white;
-  width: 100%;
-}
+  input, select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #0f172a;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+  }
 
-.info {
-  display: flex;
-  justify-content: space-between;
-  margin: 18px 0;
-  font-weight: bold;
-  color: #2456dc;
-}
+  input:focus, select:focus {
+    border-color: var(--primary);
+  }
 
-.progress {
-  background: #ddd;
-  height: 9px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-bottom: 25px;
-}
+  .btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #0f172a;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+  }
 
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: #20c997;
-  transition: 0.4s;
-}
+  .btn:hover {
+    background: var(--primary-hover);
+    color: white;
+  }
 
-.question {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 14px;
+    font-weight: 600;
+  }
 
-.option {
-  width: 100%;
-  text-align: left;
-  background: #f0f3fa;
-  margin-bottom: 12px;
-  color: #222;
-  border: 2px solid transparent;
-}
+  .badge {
+    background: #0f172a;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--primary);
+  }
 
-.option:hover:not(:disabled) {
-  background: #e0eaff;
-  border-color: #2456dc;
-}
+  .timer-badge {
+    color: #fbbf24;
+  }
 
-.option.correct {
-  background: #d5f8e5;
-  border-color: #16a34a;
-}
+  .progress-wrap {
+    width: 100%;
+    height: 8px;
+    background: #0f172a;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
 
-.option.wrong {
-  background: #ffe0e0;
-  border-color: #dc2626;
-}
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--primary);
+    transition: width 0.3s ease;
+  }
 
-.option:disabled {
-  cursor: default;
-  opacity: 1;
-}
+  .question-text {
+    font-size: 19px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
 
-.feedback {
-  margin: 15px 0;
-  padding: 15px;
-  border-radius: 10px;
-  display: none;
-  line-height: 1.5;
-}
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-.next-btn {
-  display: none;
-  margin-top: 15px;
-}
+  .opt-btn {
+    background: #0f172a;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
 
-.result {
-  text-align: center;
-  display: none;
-}
+  .opt-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: #172554;
+  }
 
-.result h2 {
-  color: #2456dc;
-  margin-bottom: 20px;
-}
+  .opt-btn.correct {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: var(--success);
+    color: #86efac;
+  }
 
-.score {
-  font-size: 55px;
-  color: #16a34a;
-  font-weight: bold;
-  margin: 20px;
-}
+  .opt-btn.wrong {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: var(--danger);
+    color: #fca5a5;
+  }
 
-.hidden {
-  display: none;
-}
+  .opt-btn:disabled {
+    cursor: not-allowed;
+  }
 
-.footer {
-  text-align: center;
-  margin-top: 25px;
-  color: #777;
-  font-size: 12px;
-}
+  .exp-box {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 8px;
+    background: #0f172a;
+    border-left: 4px solid var(--primary);
+    font-size: 14px;
+    line-height: 1.5;
+    display: none;
+  }
 
-#quiz {
-  display: none;
-}
+  .result-box {
+    text-align: center;
+    display: none;
+  }
+
+  .score-circle {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 6px solid var(--primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+  }
+
+  .score-circle span {
+    font-size: 38px;
+    font-weight: bold;
+    color: var(--primary);
+  }
+
+  .review-list {
+    text-align: left;
+    margin-top: 24px;
+    max-height: 260px;
+    overflow-y: auto;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  .review-item {
+    background: #0f172a;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .hidden {
+    display: none;
+  }
 </style>
 </head>
-
 <body>
 
-<div class="container">
-
+<div class="app">
   <div class="header">
-    <h1>💻 KUIS INFORMATIKA</h1>
-    <p>Petualangan Digital Siswa Kelas X</p>
-    <p>Belajar • Berpikir • Berprestasi</p>
+    <h1>⚡ KUIS INFORMATIKA SMP</h1>
+    <p>Berpikir Komputasional • Sistem Komputer • Literasi Digital</p>
   </div>
 
-  <div id="start">
-    <h2>Selamat Datang! 👋</h2>
-    <p>Siap menguji kemampuan Informatika kamu?</p>
-
-    <input type="text" id="nama"
-    placeholder="Masukkan nama lengkap kamu">
-
-    <button class="start-btn" onclick="mulai()">
-      🚀 MULAI KUIS
-    </button>
+  <!-- Layar Awal -->
+  <div id="screen-start">
+    <div class="form-group">
+      <label for="input-nama">Nama Lengkap Siswa</label>
+      <input type="text" id="input-nama" placeholder="Contoh: Bil Yeheskiel">
+    </div>
+    <div class="form-group">
+      <label for="input-kelas">Pilih Kelas</label>
+      <select id="input-kelas">
+        <option value="VII">Kelas VII (7)</option>
+        <option value="VIII">Kelas VIII (8)</option>
+        <option value="IX">Kelas IX (9)</option>
+      </select>
+    </div>
+    <button class="btn" onclick="startQuiz()">Mulai Mengerjakan</button>
   </div>
 
-  <div id="quiz">
-
-    <div class="info">
-      <span id="nomor">Soal 1/10</span>
-      <span id="timer">⏱ 20 detik</span>
+  <!-- Layar Kuis -->
+  <div id="screen-quiz" class="hidden">
+    <div class="top-bar">
+      <span class="badge" id="q-counter">Soal 1 / 10</span>
+      <span class="badge" id="q-topic">Topik</span>
+      <span class="badge timer-badge" id="q-timer">⏱ 25s</span>
     </div>
 
-    <div class="progress">
-      <div class="progress-bar" id="progress"></div>
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progress-fill"></div>
     </div>
 
-    <div class="question" id="pertanyaan"></div>
+    <div class="question-text" id="q-text"></div>
+    <div class="options-list" id="opt-container"></div>
+    <div class="exp-box" id="exp-box"></div>
 
-    <div id="pilihan"></div>
-
-    <div class="feedback" id="feedback"></div>
-
-    <button class="next-btn" id="next"
-    onclick="selanjutnya()">
-      SOAL BERIKUTNYA ➜
-    </button>
-
+    <button class="btn hidden" id="btn-next" onclick="nextQuestion()">Lanjut ➜</button>
   </div>
 
-  <div class="result" id="hasil">
-    <h2>🏆 KUIS SELESAI!</h2>
+  <!-- Layar Hasil -->
+  <div id="screen-result" class="result-box">
+    <h2>🎉 Evaluasi Selesai!</h2>
+    <p id="student-info" style="color: var(--muted); margin-top: 6px;"></p>
 
-    <p id="ucapan"></p>
+    <div class="score-circle">
+      <span id="final-score">0</span>
+      <small style="color: var(--muted);">Poin</small>
+    </div>
 
-    <div class="score" id="nilai"></div>
+    <h3 id="grade-text" style="margin-bottom: 8px;"></h3>
+    <p id="summary-text" style="font-size: 14px; color: var(--muted);"></p>
 
-    <h3 id="predikat"></h3>
+    <div class="review-list" id="review-list"></div>
 
-    <p id="detail"></p>
-
-    <button class="start-btn"
-    onclick="location.reload()">
-      🔄 ULANGI KUIS
-    </button>
+    <button class="btn" onclick="location.reload()" style="margin-top: 20px;">Main Lagi (Acak Soal)</button>
   </div>
-
-  <div class="footer">
-    © 2026 | Kuis Informatika Kelas X
-    <br>
-    Semangat Belajar dan Raih Prestasi!
-  </div>
-
 </div>
 
 <script>
-
-const soal = [
-
-{
-q:"Apa kepanjangan dari CPU?",
-a:["Central Processing Unit",
-"Computer Personal Unit",
-"Central Program Utility",
-"Control Processing User"],
-b:0,
-e:"CPU adalah Central Processing Unit, yaitu unit pemroses utama komputer."
-},
-
-{
-q:"Perangkat berikut yang termasuk alat input adalah...",
-a:["Monitor","Printer","Keyboard","Speaker"],
-b:2,
-e:"Keyboard digunakan untuk memasukkan data atau perintah ke komputer."
-},
-
-{
-q:"Manakah yang termasuk sistem operasi komputer?",
-a:["Microsoft Word","Windows","Google Chrome","PowerPoint"],
-b:1,
-e:"Windows merupakan sistem operasi yang mengelola perangkat keras dan perangkat lunak."
-},
-
-{
-q:"Apa fungsi utama RAM?",
-a:["Menyimpan data sementara",
-"Mencetak dokumen",
-"Menghubungkan komputer ke internet",
-"Menyimpan data permanen"],
-b:0,
-e:"RAM menyimpan data sementara yang sedang digunakan komputer."
-},
-
-{
-q:"Internet merupakan...",
-a:["Jaringan komputer lokal saja",
-"Jaringan komputer global",
-"Program pengolah kata",
-"Perangkat keras komputer"],
-b:1,
-e:"Internet merupakan jaringan komputer global yang saling terhubung."
-},
-
-{
-q:"Perangkat yang digunakan untuk menghubungkan beberapa komputer dalam jaringan LAN adalah...",
-a:["Scanner","Switch","Keyboard","Monitor"],
-b:1,
-e:"Switch menghubungkan beberapa perangkat dalam jaringan lokal."
-},
-
-{
-q:"Apa kepanjangan dari HTML?",
-a:["HyperText Markup Language",
-"High Transfer Machine Language",
-"Hyper Tool Main Link",
-"Home Text Making Language"],
-b:0,
-e:"HTML adalah HyperText Markup Language, bahasa markup untuk membuat struktur halaman web."
-},
-
-{
-q:"Manakah contoh aplikasi pengolah angka?",
-a:["Microsoft Word","Microsoft Excel",
-"Microsoft Paint","Notepad"],
-b:1,
-e:"Microsoft Excel digunakan untuk mengolah angka, tabel, dan data."
-},
-
-{
-q:"Bilangan biner menggunakan angka...",
-a:["0 dan 1","1 dan 2","0 sampai 9","A sampai F"],
-b:0,
-e:"Sistem bilangan biner menggunakan dua digit, yaitu 0 dan 1."
-},
-
-{
-q:"Tindakan yang tepat untuk menjaga keamanan akun adalah...",
-a:["Membagikan password",
-"Menggunakan password yang kuat",
-"Menggunakan password yang sama di semua akun",
-"Membuka semua tautan tidak dikenal"],
-b:1,
-e:"Password yang kuat dan unik membantu melindungi akun dari akses tidak sah."
-}
-
+const bankSoal = [
+  {
+    topik: "Berpikir Komputasional",
+    q: "Proses memecah masalah besar dan kompleks menjadi bagian-bagian kecil yang lebih mudah dikelola disebut...",
+    a: ["Abstraksi", "Algoritma", "Dekomposisi", "Pengenalan Pola"],
+    b: 2,
+    e: "Dekomposisi adalah tahap memecah masalah kompleks menjadi sub-masalah yang lebih kecil."
+  },
+  {
+    topik: "Berpikir Komputasional",
+    q: "Menyaring informasi yang penting dan mengabaikan detail yang tidak relevan dalam penyelesaian masalah disebut...",
+    a: ["Abstraksi", "Dekomposisi", "Iterasi", "Debugging"],
+    b: 0,
+    e: "Abstraksi berfokus pada inti permasalahan dan menyembunyikan detail yang tidak diperlukan."
+  },
+  {
+    topik: "Sistem Komputer",
+    q: "Komponen komputer yang berfungsi sebagai otak pemroses seluruh instruksi adalah...",
+    a: ["Harddisk", "RAM", "CPU", "Power Supply"],
+    b: 2,
+    e: "CPU (Central Processing Unit) memproses dan mengeksekusi perintah program."
+  },
+  {
+    topik: "Sistem Komputer",
+    q: "Manakah di bawah ini yang termasuk perangkat penyimpanan sekunder (permanen)?",
+    a: ["RAM", "Cache Memory", "SSD", "Register"],
+    b: 2,
+    e: "SSD (Solid State Drive) menyimpan data secara permanen meskipun komputer dimatikan."
+  },
+  {
+    topik: "Jaringan Komputer",
+    q: "Jaringan komputer yang mencakup area terbatas seperti satu ruangan laboratorium sekolah disebut...",
+    a: ["WAN", "MAN", "LAN", "Internet"],
+    b: 2,
+    e: "LAN (Local Area Network) menghubungkan perangkat dalam area lokal yang sempit."
+  },
+  {
+    topik: "Analisis Data",
+    q: "Fungsi pada aplikasi pengolah lembar kerja (Excel/Spreadsheet) untuk mencari nilai rata-rata adalah...",
+    a: ["=SUM()", "=AVERAGE()", "=MAX()", "=COUNT()"],
+    b: 1,
+    e: "=AVERAGE() digunakan untuk menghitung nilai rata-rata dari sekumpulan sel."
+  },
+  {
+    topik: "Algoritma",
+    q: "Simbol belah ketupat (diamond) pada diagram alir (flowchart) digunakan untuk menyatakan...",
+    a: ["Mulai / Selesai", "Proses perhitungan", "Input / Output", "Keputusan / Percabangan"],
+    b: 3,
+    e: "Belah ketupat melambangkan kondisi percabangan (Ya/Tidak)."
+  },
+  {
+    topik: "Dampak Sosial Informatika",
+    q: "Tindakan menyamar sebagai pihak resmi lewat pesan palsu untuk mencuri kata sandi dan data pribadi disebut...",
+    a: ["Phishing", "Malware", "Backup", "Enkripsi"],
+    b: 0,
+    e: "Phishing adalah upaya penipuan untuk memancing korban memberikan informasi sensitif."
+  },
+  {
+    topik: "Representasi Data",
+    q: "Angka desimal 5 jika dikonversi ke dalam sistem bilangan biner adalah...",
+    a: ["100", "101", "110", "111"],
+    b: 1,
+    e: "5 dalam biner adalah 101 (4 + 0 + 1 = 5)."
+  },
+  {
+    topik: "Literasi Digital",
+    q: "Fitur keamanan yang mewajibkan dua langkah verifikasi saat masuk ke akun disebut...",
+    a: ["Incognito Mode", "Two-Factor Authentication (2FA)", "Auto-Complete", "Cache Clearing"],
+    b: 1,
+    e: "2FA menambah lapisan keamanan selain kata sandi, seperti kode OTP."
+  }
 ];
 
-let indeks = 0;
-let skor = 0;
-let waktu = 20;
-let interval;
-let namaSiswa = "";
-let sudahJawab = false;
+let questions = [];
+let currentIdx = 0;
+let score = 0;
+let timeLeft = 25;
+let timerId;
+let answered = false;
+let userHistory = [];
+let studentName = "";
+let studentClass = "";
 
-function mulai() {
-
-  namaSiswa =
-  document.getElementById("nama").value.trim();
-
-  if(namaSiswa === "") {
-    alert("Silakan masukkan nama terlebih dahulu!");
-    return;
-  }
-
-  document.getElementById("start").style.display="none";
-  document.getElementById("quiz").style.display="block";
-
-  tampilkanSoal();
+function shuffleArray(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
 }
 
-function tampilkanSoal() {
-
-  sudahJawab = false;
-  waktu = 20;
-
-  clearInterval(interval);
-
-  let s = soal[indeks];
-
-  document.getElementById("nomor").innerText =
-  "Soal " + (indeks+1) + "/" + soal.length;
-
-  document.getElementById("pertanyaan").innerText =
-  s.q;
-
-  document.getElementById("progress").style.width =
-  ((indeks)/soal.length*100)+"%";
-
-  let pilihan = document.getElementById("pilihan");
-  pilihan.innerHTML = "";
-
-  s.a.forEach((jawaban,i)=>{
-
-    let btn = document.createElement("button");
-
-    btn.className = "option";
-    btn.innerText =
-    String.fromCharCode(65+i)+". "+jawaban;
-
-    btn.onclick = ()=>jawab(i,btn);
-
-    pilihan.appendChild(btn);
-
-  });
-
-  document.getElementById("feedback").style.display="none";
-  document.getElementById("next").style.display="none";
-
-  hitungMundur();
-}
-
-function hitungMundur() {
-
-  document.getElementById("timer").innerText =
-  "⏱ "+waktu+" detik";
-
-  interval = setInterval(()=>{
-
-    waktu--;
-
-    document.getElementById("timer").innerText =
-    "⏱ "+waktu+" detik";
-
-    if(waktu <= 0) {
-
-      clearInterval(interval);
-
-      if(!sudahJawab) {
-        jawab(-1,null);
-      }
-
-    }
-
-  },1000);
-}
-
-function jawab(pilihan, tombol) {
-
-  if(sudahJawab) return;
-
-  sudahJawab = true;
-  clearInterval(interval);
-
-  let s = soal[indeks];
-  let tombolSemua =
-  document.querySelectorAll(".option");
-
-  tombolSemua.forEach(btn=>{
-    btn.disabled = true;
-  });
-
-  if(pilihan === s.b) {
-
-    skor++;
-
-    tombol.classList.add("correct");
-
-  } else {
-
-    if(tombol) {
-      tombol.classList.add("wrong");
-    }
-
-    tombolSemua[s.b].classList.add("correct");
-
-  }
-
-  let feedback =
-  document.getElementById("feedback");
-
-  feedback.style.display="block";
-
-  if(pilihan === s.b) {
-
-    feedback.style.background="#d5f8e5";
-    feedback.innerHTML="✅ <b>Benar!</b> "+s.e;
-
-  } else if(pilihan === -1) {
-
-    feedback.style.background="#fff0ce";
-    feedback.innerHTML="⏰ <b>Waktu habis!</b> "+s.e;
-
-  } else {
-
-    feedback.style.background="#ffe0e0";
-    feedback.innerHTML="❌ <b>Belum tepat.</b> "+s.e;
-
-  }
-
-  document.getElementById("next").style.display="block";
-
-  if(indeks === soal.length-1) {
-    document.getElementById("next").innerText =
-    "LIHAT HASIL 🏆";
-  }
-
-}
-
-function selanjutnya() {
-
-  indeks++;
-
-  if(indeks < soal.length) {
-
-    tampilkanSoal();
-
-  } else {
-
-    selesai();
-
-  }
-
-}
-
-function selesai() {
-
-  clearInterval(interval);
-
-  document.getElementById("quiz").style.display="none";
-  document.getElementById("hasil").style.display="block";
-
-  let nilaiAkhir =
-  Math.round((skor/soal.length)*100);
-
-  document.getElementById("ucapan").innerText =
-  "Hebat, "+namaSiswa+"! Kamu sudah menyelesaikan kuis.";
-
-  document.getElementById("nilai").innerText =
-  nilaiAkhir;
-
-  let predikat = "";
-
-  if(nilaiAkhir >= 90) {
-    predikat="🌟 SANGAT BAIK!";
-  }
-  else if(nilaiAkhir >= 80) {
-    predikat="👏 BAIK!";
-  }
-  else if(nilaiAkhir >= 70) {
-    predikat="👍 CUKUP!";
-  }
-  else {
-    predikat="💪 TETAP SEMANGAT BELAJAR!";
-  }
-
-  document.getElementById("predikat").innerText =
-  predikat;
-
-  document.getElementById("detail").innerText =
-  "Jawaban benar: "+skor+
-  " dari "+soal.length+" soal.";
-
-}
-
-</script>
-
-</body>
-</html>
+function startQuiz() {
+  studentName = document.getElementById("input-nama").value.trim();
+  studentClass = document.getElementById("input-kelas").value;
+
+  if (!studentName) {
